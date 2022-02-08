@@ -1,0 +1,59 @@
+<%- include('header') -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <%- include('./css/landing_css.ejs'); %>
+    <style>
+        .card {
+     border: 3px solid black;
+        }
+        .card-img-top {
+            width: 100%;
+height: 40vh;
+object-fit: contain;
+}
+    </style>
+</head>
+<body>
+   
+    <div style="margin: 2%; padding: 5%;">
+        <h1 style="text-align: center; margin-bottom: 4%;">My Projects</h1>
+    <div class="card-deck">
+        <!-- START OF DYNAMIC -->
+        <% if(projects!=null) { 
+
+      
+       for(let i=0;i<projects.length;i++){  
+
+        
+        %>
+        
+            <div class="card" >
+            <img class="card-img-top"  src="<%= projects[i].project_dp %>" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= projects[i].project_name %></h5>
+              <p class="card-text"><%= projects[i].project_description %></p>
+              <a href="https:<%= projects[i].project_link %>" class="card-link">Go to Link</a>
+              <p class="card-text">Status:<%= projects[i].project_status %> </p>
+              <label for="project_item">Project Progression:</label>
+              <progress id="project_item" value="<%= projects[i].project_progress %>" max="100">  <%= projects[i].project_progress %> </progress>
+              <p class="card-text"><small class="text-muted">Created at <%= projects[i].project_date %></small></p>
+            </div> 
+          </div>
+            
+                
+        <% } }else{ %>
+            <h1>You do not have any projects</h1>
+      <%  } %>
+        
+        
+        
+          
+      </div>
+    </div>
+</body>
+</html>

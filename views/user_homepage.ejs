@@ -1,0 +1,55 @@
+<%- include('header') -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./css/landing_css.ejs'); %>
+   
+    <title>Admin Dashboard</title>
+
+</head>
+<div id="container">
+<body>
+    <div class="shadow mb-5 rounded yellowish_bg"  style=" margin: 2%;">
+     <h1 style="text-align: center; padding: 2%;">Hello, This is the administrator Dashboard</h1>
+     <% if(projects!=null){ %>
+
+    
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Project Name</th>
+                <th scope="col">Project Status</th>
+                <th scope="col">Project Progress</th>
+                <th scope="col">Project Display Picture</th>
+                <th scope="col">Project Link</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let i =0; i<projects.length;i++){ %>
+
+         
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td><%= projects[i].project_name %></td>
+                <td><%= projects[i].project_status %></td>
+                <td><%= projects[i].project_progress %></td>
+                <td><img src="<%= projects[i].project_dp %>" style="max-width: 150px; max-height: 150px;"></td>
+                <td><a href="https:<%= projects[i].project_link %>"><%= projects[i].project_link %></a></td>
+                <td> <button class="btn btn-primary">Edit Project</button></td>
+              </tr>
+              <% } %>
+             
+            </tbody>
+          </table>
+          <% } else{ %>
+            <h1> You do not have any projects.</h1>
+            <% } %>
+    </div>
+</body>
+</div>
+</html>
